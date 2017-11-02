@@ -1,0 +1,22 @@
+.ccm-ui .simple-gallery-form .custom-subheading {
+    margin-bottom: 20px;
+}
+
+.ccm-ui .simple-gallery-form .help-text-display-original-images {
+    display: inline-block;
+    padding-top: 0;
+}
+
+@media only screen and (min-width: 768px) {
+    .ccm-ui .simple-gallery-form .help-text-display-original-images {
+        padding-top: 28px;
+    }
+}
+
+.ccm-ui .simple-gallery-form .crop-checkbox {
+    margin-top: -10px;
+}
+
+.ccm-ui .simple-gallery-form .help-text a {
+    color: #3f9edc;
+}

@@ -1,0 +1,72 @@
+<?xml version="1.0"?>
+<schema version="0.3">
+
+    <table name="btSimpleGallery">
+
+        <field name="bID" type="I">
+            <key/>
+            <unsigned/>
+        </field>
+
+        <field name="filesetID" type="I">
+            <default value="0"/>
+            <unsigned/>
+        </field>
+
+        <field name="lightboxCaption" type="C" size="20"></field>
+
+        <field name="commonCaption" type="C" size="255"></field>
+
+        <field name="thumbnailWidth" type="I">
+            <default value="0"/>
+            <unsigned/>
+        </field>
+
+        <field name="thumbnailHeight" type="I">
+            <default value="0"/>
+            <unsigned/>
+        </field>
+
+        <field name="thumbnailCrop" type="I">
+            <default value="0"/>
+            <unsigned/>
+        </field>
+
+        <field name="fullscreenWidth" type="I">
+            <default value="0"/>
+            <unsigned/>
+        </field>
+
+        <field name="fullscreenHeight" type="I">
+            <default value="0"/>
+            <unsigned/>
+        </field>
+
+        <field name="fullscreenCrop" type="I">
+            <default value="0"/>
+            <unsigned/>
+        </field>
+
+        <field name="columnsPhone" type="I">
+            <default value="0"/>
+            <unsigned/>
+        </field>
+
+        <field name="columnsTablet" type="I">
+            <default value="0"/>
+            <unsigned/>
+        </field>
+
+        <field name="columnsDesktop" type="I">
+            <default value="0"/>
+            <unsigned/>
+        </field>
+
+        <field name="margin" type="I">
+            <default value="0"/>
+            <unsigned/>
+        </field>
+
+    </table>
+
+</schema>

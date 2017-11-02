@@ -1,0 +1,24 @@
+// ----------------------------------------------------------------------------
+// ui
+// ----------------------------------------------------------------------------
+.sg-scrapbook .sg {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.sg-scrapbook .sg .sg-item {
+  flex: 0 0 auto;
+  width: calc(33.33333% - 10px);
+  margin: 5px;
+}
+
+.sg-scrapbook .sg .sg-item img {
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+}
+
+.sg-scrapbook .sg-item-overlay,
+.sg-scrapbook .sg-item-content {
+  display: none;
+}

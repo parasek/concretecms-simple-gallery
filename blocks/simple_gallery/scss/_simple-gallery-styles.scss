@@ -1,0 +1,108 @@
+$container-padding: 5px;
+
+$ts: 576px;
+$tl: 992px;
+
+
+// ----------------------------------------------------------------------------
+// Grid
+// ----------------------------------------------------------------------------
+.sg {
+  display: flex;
+  flex-wrap: wrap;
+  margin-left: -$container-padding;
+  margin-right: -$container-padding;
+}
+
+.sg-item {
+  margin: $container-padding;
+  padding: 0;
+  width: calc(50% - 10px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+
+  @include min-screen($ts) {
+    width: calc(33.33333% - 10px);
+  }
+
+  @include min-screen($tl) {
+    width: calc(25% - 10px);
+  }
+
+}
+
+
+// ----------------------------------------------------------------------------
+// Item image
+// ----------------------------------------------------------------------------
+.sg-item-image {
+  position: relative;
+  z-index: 1;
+  overflow: hidden;
+}
+
+
+// ----------------------------------------------------------------------------
+// Item overlay
+// ----------------------------------------------------------------------------
+.sg-item-overlay {
+  display: block;
+  float: left;
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+  background: rgba(#000, 0);
+  transition: background .4s;
+}
+
+.sg-item:hover .sg-item-overlay {
+  background: rgba(#000, .6);
+}
+
+
+// ----------------------------------------------------------------------------
+// Item content
+// ----------------------------------------------------------------------------
+.sg-item-content {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+  z-index: 3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  overflow: hidden;
+  color: #fff;
+}
+
+.sg-item-content .fa {
+  transform: scale(0) translate3d(0,0,0);
+  transition: transform .4s, opacity .4s;
+  font-size: 30px;
+}
+
+.sg-item:hover .sg-item-content .fa {
+  transform: scale(1) translate3d(0,0,0);
+}
+
+
+
+//
+// no images found
+//
+.sg-no-images-found {
+  background: #f9f9f9;
+  border: 1px solid #f1f1f1;
+  padding: 20px;
+  color: #949494;
+  margin: 20px 0;
+}
