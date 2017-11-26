@@ -8,7 +8,7 @@ It was tested and works with modern browsers (latest versions of chrome, firefox
 Visit:
 https://c5center.com/add-ons/simple-gallery
 
-##Features
+## Features
 
 - Create galleries based on selected File Set
 - Implemented lightbox: Magnific Popup
