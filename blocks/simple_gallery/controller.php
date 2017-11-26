@@ -93,9 +93,6 @@ class Controller extends BlockController
         $content .= json_encode($sgi18n);
         $content .=  ';';
         $this->addFooterItem('<script>' . $content . '</script>');
-        
-        // jQuery
-        $this->requireAsset('javascript', 'jquery');
 
         // Magnific popup
         $this->requireAsset('javascript', 'core/lightbox');
