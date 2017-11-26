@@ -5,8 +5,11 @@ Simple Gallery is free, responsive and easy-to-use image gallery based on select
 This addon requires concrete5 version 8.2.1 or higher.
 It was tested and works with modern browsers (latest versions of chrome, firefox, safari, edge) and ie11.
 
-Visit:
-https://c5center.com/add-ons/simple-gallery
+License: MIT
+
+Website: https://c5center.com/add-ons/simple-gallery<br/>
+Marketplace: https://www.concrete5.org/marketplace/addons/simple-gallery
+
 
 ## Features
 
