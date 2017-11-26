@@ -1,3 +1,7 @@
+#1.0.6
+jQuery is now always loaded with asset library
+Added Readme.md for github
+
 #1.0.5
 Changes to how localization is handled
 
