@@ -57,7 +57,7 @@ class Controller extends BlockController
 
         $fileSets = $this->getFileSets();
         foreach ($fileSets as $k => $v) {
-            $filesetID_options[$k] = $v;
+            $filesetID_options[$k] = h($v);
         }
 
         $this->set('filesetID_options', $filesetID_options);

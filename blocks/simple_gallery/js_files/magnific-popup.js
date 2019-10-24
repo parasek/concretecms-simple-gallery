@@ -13,19 +13,19 @@ $(function() {
                     image: {
                         verticalFit: true,
                         titleSrc: function (item) {
-                            return item.el.attr('title');
+                            return _.escape(item.el.attr('title'));
                         },
-                        tError: sgi18n.imageNotLoaded
+                        tError: _.escape(sgi18n.imageNotLoaded)
                     },
-                    tClose: sgi18n.close,
-                    tLoading: sgi18n.loading,
+                    tClose: _.escape(sgi18n.close),
+                    tLoading: _.escape(sgi18n.loading),
                     gallery: {
                         enabled: true,
                         navigateByImgClick: true,
                         preload: [0, 1],
-                        tPrev: sgi18n.previous,
-                        tNext: sgi18n.next,
-                        tCounter: sgi18n.counter
+                        tPrev: _.escape(sgi18n.previous),
+                        tNext: _.escape(sgi18n.next),
+                        tCounter: _.escape(sgi18n.counter)
                     },
                     removalDelay: 500, //delay removal by X to allow out-animation
                     callbacks: {
