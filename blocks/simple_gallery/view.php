@@ -7,7 +7,7 @@
         <?php foreach ($images as $image): ?>
 
             <a href="<?php echo $image['fullscreenUrl']; ?>"
-               title="<?php echo $image['caption']; ?>"
+               title="<?php echo h($image['caption']); ?>"
                data-effect="mfp-zoom-in"
                class="sg-item"
             >
@@ -17,7 +17,7 @@
                 </div>
                 <div class="sg-item-image">
                     <img src="<?php echo $image['thumbnailUrl']; ?>"
-                         alt="<?php echo $image['alt']; ?>"
+                         alt="<?php echo h($image['alt']); ?>"
                          width="<?php echo $image['thumbnailWidth']; ?>"
                          height="<?php echo $image['thumbnailHeight']; ?>"
                     />
