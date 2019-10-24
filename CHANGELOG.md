@@ -1,3 +1,6 @@
+##### 1.0.8
+- Fixed missing escape functions across whole package
+
 ##### 1.0.7
 - Fixed some typos/added additional formatting in README.md/CHANGELOG.MD
 - Added proper version to $pkgVersion in controller
