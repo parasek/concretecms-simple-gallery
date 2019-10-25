@@ -1,3 +1,6 @@
+##### 1.0.9
+- Fixed lightbox error when not logged in
+
 ##### 1.0.8
 - Fixed missing escape functions across whole package
 
