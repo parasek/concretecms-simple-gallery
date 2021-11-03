@@ -2,8 +2,10 @@
 
 Simple Gallery is free, responsive and easy-to-use image gallery based on selected File Set.
 
-This addon requires concrete5 version 8.2.1 or higher.
-It was tested and works with modern browsers (latest versions of chrome, firefox, safari, edge) and ie11.
+Simple Gallery 2.0.0 or higher requires concrete5 version 9.0.0 or higher.
+Use Simple Gallery 1.0.9 for concrete5 version from 8.2.1 to 8.5.6.
+
+Simple Gallery was tested and works with modern browsers (latest versions of chrome, firefox, safari, edge).
 
 License: MIT
 
