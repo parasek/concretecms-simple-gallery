@@ -1,6 +1,6 @@
 {
   "name": "simple-gallery",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "devDependencies": {
     "asset-builder": "^2.0.0",
     "del": "^3.0.0",
