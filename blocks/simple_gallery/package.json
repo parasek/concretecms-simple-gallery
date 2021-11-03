@@ -2,11 +2,15 @@
   "name": "simple-gallery",
   "version": "0.0.1",
   "devDependencies": {
-    "grunt": "*",
-    "grunt-autoprefixer": "*",
-    "grunt-contrib-cssmin": "*",
-    "grunt-contrib-watch": "*",
-    "grunt-sass": "*",
-    "jit-grunt": "*"
+    "asset-builder": "^2.0.0",
+    "del": "^3.0.0",
+    "gulp": "^4.0.2",
+    "gulp-autoprefixer": "^4.0.0",
+    "gulp-concat": "^2.6.1",
+    "gulp-csso": "^3.0.0",
+    "gulp-load-plugins": "^1.5.0",
+    "gulp-sass": "^3.1.0",
+    "gulp-sourcemaps": "^2.6.1",
+    "csso": "^4.2.0"
   }
 }
