@@ -1,3 +1,7 @@
+##### 2.0.0
+- Package updated for version 9.0.0
+- Minimum required c5 version is 9.0.0, use previous version of package when using c5.8
+
 ##### 1.0.9
 - Fixed lightbox error when not logged in
 
