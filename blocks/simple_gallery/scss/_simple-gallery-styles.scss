@@ -3,7 +3,6 @@ $container-padding: 5px;
 $ts: 576px;
 $tl: 992px;
 
-
 // ----------------------------------------------------------------------------
 // Grid
 // ----------------------------------------------------------------------------
@@ -41,6 +40,12 @@ $tl: 992px;
   position: relative;
   z-index: 1;
   overflow: hidden;
+}
+
+.sg-item-image img {
+  display: block;
+  height: auto;
+  max-width: 100%;
 }
 
 
