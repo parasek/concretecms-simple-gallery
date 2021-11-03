@@ -1,6 +1,6 @@
 ##### 2.0.1
 - Updated README.md
-- Moved gulpfile.js do main folder
+- Moved gulpfile.js to main folder
 
 ##### 2.0.0
 - Package updated for version 9.0.0
