@@ -163,7 +163,7 @@ class Controller extends BlockController
     public function save($args) {
 
         // Basic fields
-        $args['customCaption'] = trim($args['customCaption']);
+        $args['customCaption'] = !empty($args['customCaption']) ? trim($args['customCaption']) : '';
 
         // Save checkboxes (if unchecked - they are not present in $_POST table)
         $checkboxes = [];
