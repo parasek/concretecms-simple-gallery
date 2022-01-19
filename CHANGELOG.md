@@ -1,4 +1,8 @@
-##### 2.0.1
+##### 2.0.2
+- Fixed underscore bug when using non-atomik/elemental themes.
+- Fixed php8 error when field 'customCaption' is empty
+
+- ##### 2.0.1
 - Updated README.md
 - Moved gulpfile.js to main folder
 
