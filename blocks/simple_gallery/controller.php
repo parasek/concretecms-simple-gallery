@@ -99,7 +99,8 @@ class Controller extends BlockController
         $this->requireAsset('css', 'core/lightbox');
 
         // Load underscore for escaping chars in js files
-        $this->requireAsset('javascript', 'underscore');
+        $al->register('javascript', 'simple-gallery/underscore', 'blocks/simple_gallery/vendor/underscore/underscore-min.js', [], 'simple_gallery');
+        $this->requireAsset('javascript', 'simple-gallery/underscore');
 
         $al->register('javascript', 'simple-gallery/magnific-popup', 'blocks/simple_gallery/js_files/magnific-popup.js', [], 'simple_gallery');
         $this->requireAsset('javascript', 'simple-gallery/magnific-popup');
