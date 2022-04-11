@@ -1,3 +1,7 @@
+##### 2.0.3
+- Simple Gallery is now fully compatible with php8
+- Fixed Magnific Popup bug when using non-atomik/elemental themes.
+
 ##### 2.0.2
 - Fixed underscore bug when using non-atomik/elemental themes.
 - Fixed php8 error when field 'customCaption' is empty
