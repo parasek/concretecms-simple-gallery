@@ -95,8 +95,8 @@ class Controller extends BlockController
         $this->addFooterItem('<script>' . $content . '</script>');
 
         // Magnific popup
-        $this->requireAsset('javascript', 'core/lightbox');
-        $this->requireAsset('css', 'core/lightbox');
+        $this->requireAsset('javascript', 'feature/imagery/frontend');
+        $this->requireAsset('css', 'feature/imagery/frontend');
 
         // Load underscore for escaping chars in js files
         $al->register('javascript', 'simple-gallery/underscore', 'blocks/simple_gallery/vendor/underscore/underscore-min.js', [], 'simple_gallery');
