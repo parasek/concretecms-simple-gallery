@@ -27,6 +27,17 @@ class Controller extends BlockController
 
     protected $btDefaultSet = 'multimedia'; // basic, navigation, form, express, social, multimedia
 
+    protected $filesetID;
+    protected $lightboxCaption;
+    protected $commonCaption;
+    protected $fullscreenWidth;
+    protected $fullscreenHeight;
+    protected $fullscreenCrop;
+    protected $columnsPhone;
+    protected $columnsTablet;
+    protected $columnsDesktop;
+    protected $margin;
+
     private $uniqueID;
 
     public function getBlockTypeName() {
@@ -50,6 +61,17 @@ class Controller extends BlockController
         // Unique identifier
         $this->uniqueID = $this->app->make('helper/validation/identifier')->getString(18);
         $this->set('uniqueID', $this->uniqueID);
+
+        $this->set('filesetID', $this->filesetID);
+        $this->set('lightboxCaption', $this->lightboxCaption);
+        $this->set('commonCaption', $this->commonCaption);
+        $this->set('fullscreenWidth', $this->fullscreenWidth);
+        $this->set('fullscreenHeight', $this->fullscreenHeight);
+        $this->set('fullscreenCrop', $this->fullscreenCrop);
+        $this->set('columnsPhone', $this->columnsPhone);
+        $this->set('columnsTablet', $this->columnsTablet);
+        $this->set('columnsDesktop', $this->columnsDesktop);
+        $this->set('margin', $this->margin);
 
         // File Set (filesetID) options
         $filesetID_options   = [];
