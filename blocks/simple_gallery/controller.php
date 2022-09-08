@@ -30,6 +30,9 @@ class Controller extends BlockController
     protected $filesetID;
     protected $lightboxCaption;
     protected $commonCaption;
+    protected $thumbnailWidth;
+    protected $thumbnailHeight;
+    protected $thumbnailCrop;
     protected $fullscreenWidth;
     protected $fullscreenHeight;
     protected $fullscreenCrop;
@@ -65,6 +68,9 @@ class Controller extends BlockController
         $this->set('filesetID', $this->filesetID);
         $this->set('lightboxCaption', $this->lightboxCaption);
         $this->set('commonCaption', $this->commonCaption);
+        $this->set('thumbnailWidth', $this->thumbnailWidth);
+        $this->set('thumbnailHeight', $this->thumbnailHeight);
+        $this->set('thumbnailCrop', $this->thumbnailCrop);
         $this->set('fullscreenWidth', $this->fullscreenWidth);
         $this->set('fullscreenHeight', $this->fullscreenHeight);
         $this->set('fullscreenCrop', $this->fullscreenCrop);
@@ -141,14 +147,7 @@ class Controller extends BlockController
 
     public function add() {
 
-        // Default values when adding block
-        $this->set('columnsPhone', 2);
-        $this->set('columnsTablet', 3);
-        $this->set('columnsDesktop', 4);
-        $this->set('margin', 5);
-        $this->set('thumbnailWidth', 450);
-        $this->set('thumbnailHeight', 300);
-        $this->set('thumbnailCrop', 1);
+        $this->setDefaultValues();
 
         $this->addEdit();
 
@@ -258,6 +257,18 @@ class Controller extends BlockController
         $al = AssetList::getInstance();
         $al->register('javascript', 'simple-gallery/auto-js', 'blocks/simple_gallery/auto.js', [], 'simple_gallery');
         $this->requireAsset('javascript', 'simple-gallery/auto-js');
+
+        // Workaround for checking if composer page is being added
+        // "ccmCheckoutFirst=1" in url means it is being added
+        $request = \Request::getInstance();
+        $referer = $request->headers->get('referer');
+        $parts = parse_url($referer);
+        if (!empty($parts['query'])) {
+            parse_str($parts['query'], $query);
+            if (isset($query['ccmCheckoutFirst']) and $query['ccmCheckoutFirst'] == '1') {
+                $this->setDefaultValues();
+            }
+        }
 
         $this->edit();
 
@@ -471,6 +482,17 @@ class Controller extends BlockController
 
         return $css;
 
+    }
+
+    private function setDefaultValues()
+    {
+        $this->set('columnsPhone', 2);
+        $this->set('columnsTablet', 3);
+        $this->set('columnsDesktop', 4);
+        $this->set('margin', 5);
+        $this->set('thumbnailWidth', 450);
+        $this->set('thumbnailHeight', 300);
+        $this->set('thumbnailCrop', 1);
     }
 
 }
