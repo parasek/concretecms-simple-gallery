@@ -1,3 +1,6 @@
+##### 2.1.0
+- Display default values in fields when adding "Simple Gallery" block in Composer page
+
 ##### 2.0.3
 - Simple Gallery is now fully compatible with php8
 - Fixed Magnific Popup bug when using non-atomik/elemental themes.

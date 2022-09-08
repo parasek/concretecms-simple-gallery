@@ -10,7 +10,7 @@ class Controller extends Package
 
     protected $pkgHandle = 'simple_gallery';
     protected $appVersionRequired = '9.0.0';
-    protected $pkgVersion = '2.0.3';
+    protected $pkgVersion = '2.1.0';
 
     public function getPackageName() {
         return t('Simple Gallery');
