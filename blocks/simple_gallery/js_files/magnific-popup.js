@@ -1,8 +1,8 @@
-$(function() {
+$(function () {
 
     var simpleGalleryMagnificPopup = (function ($, window, document, undefined) {
 
-        var initMagnificPopup = function(e) {
+        var initMagnificPopup = function (e) {
 
             $('.js-sg').each(function () {
 
@@ -41,7 +41,7 @@ $(function() {
 
         };
 
-        var init = function() {
+        var init = function () {
             initMagnificPopup();
         };
 

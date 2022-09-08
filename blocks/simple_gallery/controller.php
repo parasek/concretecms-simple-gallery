@@ -1,6 +1,6 @@
-<?php namespace Concrete\Package\SimpleGallery\Block\SimpleGallery;
+<?php
 
-defined('C5_EXECUTE') or die('Access Denied.');
+namespace Concrete\Package\SimpleGallery\Block\SimpleGallery;
 
 use Concrete\Core\Asset\AssetList;
 use Concrete\Core\Block\BlockController;
@@ -13,7 +13,6 @@ use Concrete\Core\Page\Page;
 
 class Controller extends BlockController
 {
-
     protected $btTable = 'btSimpleGallery';
     protected $btExportTables = ['btSimpleGallery'];
     protected $btInterfaceWidth = '800';
@@ -43,24 +42,25 @@ class Controller extends BlockController
 
     private $uniqueID;
 
-    public function getBlockTypeName() {
+    public function getBlockTypeName()
+    {
         return t('Simple Gallery');
     }
 
-    public function getBlockTypeDescription() {
+    public function getBlockTypeDescription()
+    {
         return t('Create image gallery based on File Set.');
     }
 
-    public function getSearchableContent() {
-
+    public function getSearchableContent()
+    {
         $content = [];
 
         return implode(' ', $content);
-
     }
 
-    public function on_start() {
-
+    public function on_start()
+    {
         // Unique identifier
         $this->uniqueID = $this->app->make('helper/validation/identifier')->getString(18);
         $this->set('uniqueID', $this->uniqueID);
@@ -80,7 +80,7 @@ class Controller extends BlockController
         $this->set('margin', $this->margin);
 
         // File Set (filesetID) options
-        $filesetID_options   = [];
+        $filesetID_options = [];
         $filesetID_options[] = '----';
 
         $fileSets = $this->getFileSets();
@@ -92,17 +92,16 @@ class Controller extends BlockController
 
         // Lightbox caption (lightboxCaption) options
         $lightboxCaption_options = [];
-        $lightboxCaption_options['none']       = t('Do not display caption');
+        $lightboxCaption_options['none'] = t('Do not display caption');
         $lightboxCaption_options['file_title'] = t('Display caption based on File Title');
         $lightboxCaption_options['page_title'] = t('Display common caption based on Page Name');
-        $lightboxCaption_options['common']     = t('Display common caption');
+        $lightboxCaption_options['common'] = t('Display common caption');
 
         $this->set('lightboxCaption_options', $lightboxCaption_options);
-
     }
 
-    public function registerViewAssets($outputContent = '') {
-
+    public function registerViewAssets($outputContent = '')
+    {
         $al = AssetList::getInstance();
 
         // Font awesome
@@ -111,15 +110,15 @@ class Controller extends BlockController
         // Localization (we can't just register "javascript-localized" because it breaks combined css in half, when cache is on)
         $sgi18n = array();
         $sgi18n['imageNotLoaded'] = t('%sThe image%s could not be loaded.', '<a href=\"%url%\">', '</a>');
-        $sgi18n['close']          = t('Close (Esc)');
-        $sgi18n['loading']        = t('Loading...');
-        $sgi18n['previous']       = t('Previous (Left arrow key)');
-        $sgi18n['next']           = t('Next (Right arrow key)');
-        $sgi18n['counter']        = t('%curr% of %total%');
+        $sgi18n['close'] = t('Close (Esc)');
+        $sgi18n['loading'] = t('Loading...');
+        $sgi18n['previous'] = t('Previous (Left arrow key)');
+        $sgi18n['next'] = t('Next (Right arrow key)');
+        $sgi18n['counter'] = t('%curr% of %total%');
         $content = '';
         $content .= 'var sgi18n = ';
         $content .= json_encode($sgi18n);
-        $content .=  ';';
+        $content .= ';';
         $this->addFooterItem('<script>' . $content . '</script>');
 
         // Magnific popup
@@ -142,25 +141,22 @@ class Controller extends BlockController
         if ($inlineCss) {
             $this->addHeaderItem('<style>' . $inlineCss . '</style>');
         }
-
     }
 
-    public function add() {
-
+    public function add()
+    {
         $this->setDefaultValues();
 
         $this->addEdit();
-
     }
 
-    public function edit() {
-
+    public function edit()
+    {
         $this->addEdit();
-
     }
 
-    public function addEdit() {
-
+    public function addEdit()
+    {
         $al = AssetList::getInstance();
 
         // Load form.css
@@ -169,20 +165,17 @@ class Controller extends BlockController
 
         // Make $app available in view
         $this->set('app', $this->app);
-
     }
 
-    public function view() {
-
-        // Get images
+    public function view()
+    {
         $images = $this->getImages($this->filesetID);
         $images = $this->processImages($images);
         $this->set('images', $images);
-
     }
 
-    public function save($args) {
-
+    public function save($args)
+    {
         // Basic fields
         $args['customCaption'] = !empty($args['customCaption']) ? trim($args['customCaption']) : '';
 
@@ -208,28 +201,27 @@ class Controller extends BlockController
         }
 
         parent::save($args);
-
     }
 
-    public function duplicate($newBlockID) {
-
+    public function duplicate($newBlockID)
+    {
         parent::duplicate($newBlockID);
+    }
+
+    public function delete()
+    {
 
     }
 
-    public function delete() {
-
-    }
-
-    public function validate($args) {
-
+    public function validate($args)
+    {
         $error = $this->app->make('helper/validation/error');
 
         // Required fields
         $requiredFields = [];
-        $requiredFields['filesetID']      = t('File Set');
-        $requiredFields['columnsPhone']   = t('Phone (0-575px)');
-        $requiredFields['columnsTablet']  = t('Tablet (576-991px)');
+        $requiredFields['filesetID'] = t('File Set');
+        $requiredFields['columnsPhone'] = t('Phone (0-575px)');
+        $requiredFields['columnsTablet'] = t('Tablet (576-991px)');
         $requiredFields['columnsDesktop'] = t('Desktop (992px+)');
 
         foreach ($requiredFields as $requiredFieldHandle => $requiredFieldLabel) {
@@ -240,20 +232,19 @@ class Controller extends BlockController
 
         }
 
-        if (!empty($args['thumbnailCrop']) AND (empty($args['thumbnailWidth']) OR empty($args['thumbnailHeight']))) {
+        if (!empty($args['thumbnailCrop']) and (empty($args['thumbnailWidth']) or empty($args['thumbnailHeight']))) {
             $error->add(t('To crop Thumbnails you need to specify width and height.'));
         }
 
-        if (!empty($args['fullscreenCrop']) AND (empty($args['fullscreenWidth']) OR empty($args['fullscreenHeight']))) {
+        if (!empty($args['fullscreenCrop']) and (empty($args['fullscreenWidth']) or empty($args['fullscreenHeight']))) {
             $error->add(t('To crop Fullscreen Images you need to specify width and height.'));
         }
 
         return $error;
-
     }
 
-    public function composer() {
-
+    public function composer()
+    {
         $al = AssetList::getInstance();
         $al->register('javascript', 'simple-gallery/auto-js', 'blocks/simple_gallery/auto.js', [], 'simple_gallery');
         $this->requireAsset('javascript', 'simple-gallery/auto-js');
@@ -271,32 +262,29 @@ class Controller extends BlockController
         }
 
         $this->edit();
-
     }
 
-    public function scrapbook() {
-
+    public function scrapbook()
+    {
         $this->edit();
-
     }
 
-    private function getFileSets() {
-
+    private function getFileSets()
+    {
         $fileSetList = new FileSetList();
         $fileSets = $fileSetList->get();
 
         $fileSetsArray = [];
 
-        foreach($fileSets as $fileSet) {
+        foreach ($fileSets as $fileSet) {
             $fileSetsArray[$fileSet->getFileSetID()] = $fileSet->getFileSetName();
         }
 
         return $fileSetsArray;
-
     }
 
-    private function getImages($filesetID) {
-
+    private function getImages($filesetID)
+    {
         $images = [];
 
         $fileSet = FileSet::getByID($filesetID);
@@ -313,68 +301,67 @@ class Controller extends BlockController
         }
 
         return $images;
-
     }
 
-    private function processImages(array $images) {
-
+    private function processImages(array $images)
+    {
         $ih = $this->app->make('helper/image');
 
         $c = Page::getCurrentPage();
 
         $imagesNewArray = [];
 
-        if (is_array($images) AND count($images)>0) {
+        if (is_array($images) and count($images) > 0) {
 
             foreach ($images as $key => $image) {
 
                 // Thumbnail image
-                $thumbnailUrl    = $image->getRelativePath();
-                $thumbnailWidth  = $image->getAttribute('width');
+                $thumbnailUrl = $image->getRelativePath();
+                $thumbnailWidth = $image->getAttribute('width');
                 $thumbnailHeight = $image->getAttribute('height');
 
-                if (($this->thumbnailWidth OR $this->thumbnailHeight) AND ($thumbnailWidth>$this->thumbnailWidth OR $thumbnailHeight>$this->thumbnailHeight)) {
+                if (($this->thumbnailWidth or $this->thumbnailHeight) and ($thumbnailWidth > $this->thumbnailWidth or $thumbnailHeight > $this->thumbnailHeight)) {
                     $thumbnailObject = File::getByID($image->getFileID());
-                    if (is_object($thumbnailObject) AND $thumbnailObject->canEdit()) {
-                        $thumbnail       = $ih->getThumbnail($thumbnailObject, $this->thumbnailWidth, $this->thumbnailHeight, $this->thumbnailCrop);
-                        $thumbnailUrl    = $thumbnail->src;
-                        $thumbnailWidth  = $thumbnail->width;
+                    if (is_object($thumbnailObject) and $thumbnailObject->canEdit()) {
+                        $thumbnail = $ih->getThumbnail($thumbnailObject, $this->thumbnailWidth, $this->thumbnailHeight, $this->thumbnailCrop);
+                        $thumbnailUrl = $thumbnail->src;
+                        $thumbnailWidth = $thumbnail->width;
                         $thumbnailHeight = $thumbnail->height;
                     }
                 }
 
-                $imagesNewArray[$key]['thumbnailUrl']    = $thumbnailUrl;
-                $imagesNewArray[$key]['thumbnailWidth']  = $thumbnailWidth;
+                $imagesNewArray[$key]['thumbnailUrl'] = $thumbnailUrl;
+                $imagesNewArray[$key]['thumbnailWidth'] = $thumbnailWidth;
                 $imagesNewArray[$key]['thumbnailHeight'] = $thumbnailHeight;
 
                 // Fullscreen image
-                $fullscreenUrl    = $image->getRelativePath();
-                $fullscreenWidth  = $image->getAttribute('width');
+                $fullscreenUrl = $image->getRelativePath();
+                $fullscreenWidth = $image->getAttribute('width');
                 $fullscreenHeight = $image->getAttribute('height');
 
-                if (($this->fullscreenWidth OR $this->fullscreenHeight) AND ($fullscreenWidth>$this->fullscreenWidth OR $fullscreenHeight>$this->fullscreenHeight)) {
+                if (($this->fullscreenWidth or $this->fullscreenHeight) and ($fullscreenWidth > $this->fullscreenWidth or $fullscreenHeight > $this->fullscreenHeight)) {
                     $fullscreenObject = File::getByID($image->getFileID());
-                    if (is_object($fullscreenObject) AND $fullscreenObject->canEdit()) {
-                        $fullscreen       = $ih->getThumbnail($fullscreenObject, $this->fullscreenWidth, $this->fullscreenHeight, $this->fullscreenCrop);
-                        $fullscreenUrl    = $fullscreen->src;
-                        $fullscreenWidth  = $fullscreen->width;
+                    if (is_object($fullscreenObject) and $fullscreenObject->canEdit()) {
+                        $fullscreen = $ih->getThumbnail($fullscreenObject, $this->fullscreenWidth, $this->fullscreenHeight, $this->fullscreenCrop);
+                        $fullscreenUrl = $fullscreen->src;
+                        $fullscreenWidth = $fullscreen->width;
                         $fullscreenHeight = $fullscreen->height;
                     }
                 }
 
-                $imagesNewArray[$key]['fullscreenUrl']    = $fullscreenUrl;
-                $imagesNewArray[$key]['fullscreenWidth']  = $fullscreenWidth;
+                $imagesNewArray[$key]['fullscreenUrl'] = $fullscreenUrl;
+                $imagesNewArray[$key]['fullscreenWidth'] = $fullscreenWidth;
                 $imagesNewArray[$key]['fullscreenHeight'] = $fullscreenHeight;
 
                 // Link title attribute
                 $caption = '';
-                if ($this->lightboxCaption=='file_title') {
+                if ($this->lightboxCaption == 'file_title') {
                     $caption = $image->getTitle();
                 }
-                if ($this->lightboxCaption=='page_title') {
+                if ($this->lightboxCaption == 'page_title') {
                     $caption = $c->getCollectionName();
                 }
-                if ($this->lightboxCaption=='common') {
+                if ($this->lightboxCaption == 'common') {
                     $caption = $this->commonCaption;
                 }
                 $imagesNewArray[$key]['caption'] = $caption;
@@ -395,93 +382,91 @@ class Controller extends BlockController
         }
 
         return $imagesNewArray;
-
     }
 
-    private function renderCss() {
-
-        $uniqueParentContainer = '.sg-'.$this->bID;
+    private function renderCss()
+    {
+        $uniqueParentContainer = '.sg-' . $this->bID;
 
         $css = '';
 
         // 1. Number of columns
 
         // columnsPhone
-        if ($this->columnsPhone AND $this->margin AND ($this->columnsPhone!=2 OR $this->margin!=5)) {
+        if ($this->columnsPhone and $this->margin and ($this->columnsPhone != 2 or $this->margin != 5)) {
 
             $calcWidth = '';
-            $calcWidth .= (100/$this->columnsPhone).'%';
+            $calcWidth .= (100 / $this->columnsPhone) . '%';
             if ($this->margin) {
-                $calcWidth .= ' - '.($this->margin*2).'px';
+                $calcWidth .= ' - ' . ($this->margin * 2) . 'px';
             }
 
             $css .= '@media only screen and (max-width: 575px) {';
-                $css .= '.ccm-page '.$uniqueParentContainer.' .sg-item {';
-                    $css .= 'width: calc('.$calcWidth.');';
-                $css .= '}';
+            $css .= '.ccm-page ' . $uniqueParentContainer . ' .sg-item {';
+            $css .= 'width: calc(' . $calcWidth . ');';
+            $css .= '}';
             $css .= '}';
 
         }
 
         // columnsTablet
-        if ($this->columnsTablet AND $this->margin AND ($this->columnsTablet!=3 OR $this->margin!=5)) {
+        if ($this->columnsTablet and $this->margin and ($this->columnsTablet != 3 or $this->margin != 5)) {
 
             $calcWidth = '';
-            $calcWidth .= (100/$this->columnsTablet).'%';
+            $calcWidth .= (100 / $this->columnsTablet) . '%';
             if ($this->margin) {
-                $calcWidth .= ' - '.($this->margin*2).'px';
+                $calcWidth .= ' - ' . ($this->margin * 2) . 'px';
             }
 
             $css .= '@media only screen and (min-width: 576px) and (max-width: 991px) {';
-                $css .= '.ccm-page '.$uniqueParentContainer.' .sg-item {';
-                    $css .= 'width: calc('.$calcWidth.');';
-                $css .= '}';
+            $css .= '.ccm-page ' . $uniqueParentContainer . ' .sg-item {';
+            $css .= 'width: calc(' . $calcWidth . ');';
+            $css .= '}';
             $css .= '}';
 
         }
 
         // columnsDesktop
-        if ($this->columnsDesktop AND $this->margin AND ($this->columnsDesktop!=4 OR $this->margin!=5)) {
+        if ($this->columnsDesktop and $this->margin and ($this->columnsDesktop != 4 or $this->margin != 5)) {
 
             $calcWidth = '';
-            $calcWidth .= (100/$this->columnsDesktop).'%';
+            $calcWidth .= (100 / $this->columnsDesktop) . '%';
             if ($this->margin) {
-                $calcWidth .= ' - '.($this->margin*2).'px';
+                $calcWidth .= ' - ' . ($this->margin * 2) . 'px';
             }
 
             $css .= '@media only screen and (min-width: 992px) {';
-                $css .= '.ccm-page '.$uniqueParentContainer.' .sg-item {';
-                    $css .= 'width: calc('.$calcWidth.');';
-                $css .= '}';
+            $css .= '.ccm-page ' . $uniqueParentContainer . ' .sg-item {';
+            $css .= 'width: calc(' . $calcWidth . ');';
+            $css .= '}';
             $css .= '}';
 
         }
 
         // 2. Margin (space between images))
 
-        if ($this->margin AND $this->margin!=5) {
+        if ($this->margin and $this->margin != 5) {
 
-            $css .= '.ccm-page '.$uniqueParentContainer.' {margin-left: -'.$this->margin.'px;';
-                $css .= 'margin-right: -'.$this->margin.'px;';
+            $css .= '.ccm-page ' . $uniqueParentContainer . ' {margin-left: -' . $this->margin . 'px;';
+            $css .= 'margin-right: -' . $this->margin . 'px;';
             $css .= '}';
-            $css .= '.ccm-page '.$uniqueParentContainer.' .sg-item {';
-                $css .= 'margin: '.$this->margin.'px;';
+            $css .= '.ccm-page ' . $uniqueParentContainer . ' .sg-item {';
+            $css .= 'margin: ' . $this->margin . 'px;';
             $css .= '}';
 
         } elseif (!$this->margin) {
 
-            $css .= '.ccm-page '.$uniqueParentContainer.' {';
-                $css .= 'margin-left: 0;';
-                $css .= 'margin-right: 0;';
+            $css .= '.ccm-page ' . $uniqueParentContainer . ' {';
+            $css .= 'margin-left: 0;';
+            $css .= 'margin-right: 0;';
             $css .= '}';
-                $css .= '.ccm-page '.$uniqueParentContainer.' .sg-item {';
-                $css .= 'margin: 0;';
+            $css .= '.ccm-page ' . $uniqueParentContainer . ' .sg-item {';
+            $css .= 'margin: 0;';
             $css .= '}';
 
         }
 
         return $css;
-
     }
 
     private function setDefaultValues()
